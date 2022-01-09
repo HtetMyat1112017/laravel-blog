@@ -33,6 +33,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth()
+                            <li class="nav-item">
+                            <a class="nav-link {{route('home') ==request()->url() ? "active": ''}}" href="{{route('home')}}">Home</a>
+                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {{route('category.create') ==request()->url() ? "active": '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Category
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item {{route('category.create') ==request()->url() ? "active": ''}}" href="{{route('category.create')}}">Category Create</a></li>
+                                    <li><a class="dropdown-item {{route('category.index') ==request()->url() ? "active": ''}}"  href="{{route('category.index')}}">Category List</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {{route('post.create') ==request()->url() ? "active": '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Post
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item {{route('post.create') ==request()->url() ? "active": ''}}" href="{{route('post.create')}}">Post Create</a></li>
+                                    <li><a class="dropdown-item {{route('post.index') ==request()->url() ? "active": ''}}"  href="{{route('post.index')}}">Post List</a></li>
+                                </ul>
+                            </li>
+                        @endauth
 
                     </ul>
 
@@ -52,6 +75,7 @@
                                 </li>
                             @endif
                         @else
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
